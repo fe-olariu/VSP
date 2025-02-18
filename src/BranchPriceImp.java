@@ -2055,7 +2055,7 @@ public class BranchPriceImp {
 	public static void main(String[] args) throws GRBException, IOException, InterruptedException {
 
 		int n_max = 1_000_000;
-		fileNameInstances = "instances1.txt";
+		fileNameInstances = "instances.txt";
 
 		ArrayList<String> listInst = createListOfInstances(fileNameInstances);
 
