@@ -70,10 +70,10 @@ public class BranchPriceImp {
 	public static boolean correctSolution = false;
 
 	public static String fileName = "", fileNameInstances = "";// to be initialized
-	public static String path = "../data/VertexSeparatorP/";
-	public static String path_results = "../data/VertexSeparatorP/results/";
-	public static String path_instances = "../data/VertexSeparatorP/instances/";
-	public static String path_solutions = "../data/VertexSeparatorP/solutions/";
+	public static String path = "../data/VSP/";
+	public static String path_results = "../data/VSP/results/";
+	public static String path_instances = "../data/VSP/instances/";
+	public static String path_solutions = "../data/VSP/solutions/";
 
 	public static void createDir(String path) {
 		File file = new File(path);
@@ -451,6 +451,7 @@ public class BranchPriceImp {
 							model.addConstr(expr1, GRB.LESS_EQUAL, 1.0, "B_A_edge_" + u + "_" + v);// B_A_edge_
 					}
 		model.update();
+		model.write(path_results + fileName + "/model_pb.lp");
 		env.set(GRB.IntParam.OutputFlag, 0);
 		model.set(GRB.IntParam.OutputFlag, 0);
 		model.setObjective(objFunction);
@@ -1902,11 +1903,11 @@ public class BranchPriceImp {
 	}
 
 	public static void writeFinalData(int pbNo, double time) {
-		createFile("../data/VertexSeparatorP/results/finalSolutions.txt");
+		createFile("../data/VSP/results/finalSolutions.txt");
 		NumberFormat nrformat = NumberFormat.getInstance();
 		nrformat.setMaximumFractionDigits(2);
 		try (BufferedWriter writer = new BufferedWriter(
-				new FileWriter("../data/VertexSeparatorP/results/finalSolutions.txt", true))) {
+				new FileWriter("../data/VSP/results/finalSolutions.txt", true))) {
 			writer.newLine();
 			writer.newLine();
 			String nLine = "Input file: " + fileName + ", " + n + " vertices" + ", " + m + " edges ("
